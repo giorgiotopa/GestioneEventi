@@ -3,16 +3,17 @@ package it.Epicode.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "partecipazioni")
+@Table(name = "partecipazione")
 public class Partecipazione {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "persona_fk")
     private Persona persona;
     @ManyToOne
+    @JoinColumn(name = "evento_fk")
     private Evento evento;
     @Enumerated(EnumType.STRING)
     private Stato stato;
@@ -38,10 +39,6 @@ public class Partecipazione {
         return persona;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-        persona.addPartecipazione(this);
-    }
 
     public Evento getEvento() {
         return evento;
@@ -59,13 +56,17 @@ public class Partecipazione {
         this.stato = stato;
     }
 
-    @Override
-    public String toString() {
-        return "Partecipazione{" +
-                "id=" + id +
-                ", persona=" + persona +
-                ", evento=" + evento +
-                ", stato=" + stato +
-                '}';
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
+
+//    @Override
+//    public String toString() {
+//        return "Partecipazione{" +
+//                "id=" + id +
+//                ", persona=" + persona +
+//                ", evento=" + evento +
+//                ", stato=" + stato +
+//                '}';
+//    }
 }

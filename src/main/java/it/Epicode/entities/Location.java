@@ -2,15 +2,19 @@ package it.Epicode.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "location")
 public class Location {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private String città;
+    @OneToMany(mappedBy = "location")
+    private List<Evento> eventi;
 
     public Location(){}
 
@@ -42,6 +46,14 @@ public class Location {
 
     public void setCittà(String città) {
         this.città = città;
+    }
+
+    public List<Evento> getEventi() {
+        return eventi;
+    }
+
+    public void setEventi(List<Evento> eventi) {
+        this.eventi = eventi;
     }
 
     @Override
