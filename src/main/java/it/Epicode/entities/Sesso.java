@@ -1,2 +1,5 @@
-package it.Epicode.entities;public enum Sesso {
+package it.Epicode.entities;
+
+public enum Sesso {
+    M, F
 }
