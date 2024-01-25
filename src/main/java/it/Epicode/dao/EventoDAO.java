@@ -2,6 +2,7 @@ package it.Epicode.dao;
 
 import it.Epicode.entities.GenereMusica;
 import it.Epicode.entities.Evento;
+import it.Epicode.entities.PartitaDiCalcio;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -62,6 +63,17 @@ public class EventoDAO {
         return em.createQuery(
                         "SELECT c FROM Concerto c WHERE c.genere = :genere")
                 .setParameter("genere", genere)
+                .getResultList();
+    }
+    // Metodo per ottenere le partite vinte in casa
+    public List<PartitaDiCalcio> getPartiteVinteInCasa() {
+        return em.createNamedQuery("queryVinteInCasa", PartitaDiCalcio.class)
+                .getResultList();
+    }
+
+    // Metodo per ottenere le partite vinte in trasferta
+    public List<PartitaDiCalcio> getPartiteVinteInTrasferta() {
+        return em.createNamedQuery("queryVinteInTrasferta", PartitaDiCalcio.class)
                 .getResultList();
     }
 

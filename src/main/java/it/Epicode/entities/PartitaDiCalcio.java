@@ -1,21 +1,28 @@
 package it.Epicode.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 
 @Entity
-public class ParatitaDiCalcio extends Evento {
+@Table(name = "partite_di_calcio")
+@NamedQuery(name = "queryVinteInCasa",
+        query = "SELECT p FROM PartitaDiCalcio p WHERE p.squadraVincente = p.squadraDiCasa")
+@NamedQuery(name = "queryVinteInTrasferta",
+        query = "SELECT p FROM PartitaDiCalcio p WHERE p.squadraVincente = p.squadraOspite")
+public class PartitaDiCalcio extends Evento {
     private String squadraDiCasa;
     private String squadraOspite;
     private String squadraVincente; // Null se pareggio
     private int numeroGolSquadraDiCasa;
     private int numeroGolSquadraOspite;
 
-    public ParatitaDiCalcio() {
+    public PartitaDiCalcio() {
     }
 
-    public ParatitaDiCalcio(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, String squadraDiCasa, String squadraOspite, String squadraVincente, int numeroGolSquadraDiCasa, int numeroGolSquadraOspite) {
+    public PartitaDiCalcio(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, String squadraDiCasa, String squadraOspite, String squadraVincente, int numeroGolSquadraDiCasa, int numeroGolSquadraOspite) {
         super(titolo, dataEvento, descrizione, tipoEvento, numeroMassimoPartecipanti);
         this.squadraDiCasa = squadraDiCasa;
         this.squadraOspite = squadraOspite;
