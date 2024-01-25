@@ -1,10 +1,13 @@
 package it.Epicode.dao;
 
+import it.Epicode.entities.GenereMusica;
 import it.Epicode.entities.Evento;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+
+import java.util.List;
 
 public class EventoDAO {
 
@@ -44,6 +47,22 @@ public class EventoDAO {
 
     public void close(){
         em.close();
+    }
+
+    // Metodo per ottenere i concerti in streaming in base al flag (true/false)
+    public List getConcertiInStreaming(boolean inStreaming) {
+        return em.createQuery(
+                        "SELECT c FROM Concerto c WHERE c.inStreaming = :inStreaming")
+                .setParameter("inStreaming", inStreaming)
+                .getResultList();
+    }
+
+    // Metodo per ottenere i concerti per genere
+    public List getConcertiPerGenere(GenereMusica genere) {
+        return em.createQuery(
+                        "SELECT c FROM Concerto c WHERE c.genere = :genere")
+                .setParameter("genere", genere)
+                .getResultList();
     }
 
 }

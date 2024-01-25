@@ -1,9 +1,10 @@
-package it.Epicode.entities;
+package it.Epicode;
 
 import it.Epicode.dao.EventoDAO;
 import it.Epicode.dao.LocationDAO;
 import it.Epicode.dao.PartecipazioneDAO;
 import it.Epicode.dao.PersonaDAO;
+import it.Epicode.entities.*;
 
 import java.time.LocalDate;
 
